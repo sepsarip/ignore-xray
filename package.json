@@ -1,0 +1,65 @@
+{
+  "name": "ignore-xray",
+  "displayName": "Ignore File X-Ray",
+  "description": "Evaluate .gitignore and .dockerignore line-by-line in real time — zero config, 100% local.",
+  "version": "0.1.0",
+  "publisher": "ignore-xray",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "workspaceContains:**/.gitignore",
+    "workspaceContains:**/.dockerignore",
+    "onLanguage:ignore"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "ignoreXray.auditContext",
+        "title": "Ignore X-Ray: Audit Context"
+      },
+      {
+        "command": "ignoreXray.rescanWorkspace",
+        "title": "Ignore X-Ray: Rescan Workspace"
+      }
+    ],
+    "configuration": {
+      "title": "Ignore File X-Ray",
+      "properties": {
+        "ignoreXray.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable inline Ignore File X-Ray decorations."
+        },
+        "ignoreXray.maxFiles": {
+          "type": "number",
+          "default": 100000,
+          "minimum": 1000,
+          "description": "Maximum number of filesystem entries scanned before stopping safely."
+        },
+        "ignoreXray.debounceMs": {
+          "type": "number",
+          "default": 250,
+          "minimum": 50,
+          "description": "Evaluation delay in milliseconds after typing stops."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ignore": "^7.0.17"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/vscode": "^1.146.0",
+    "typescript": "^7.0.2"
+  }
+}
