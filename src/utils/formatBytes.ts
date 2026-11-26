@@ -1,0 +1,24 @@
+const UNITS = ['B', 'KB', 'MB', 'GB', 'TB'] as const;
+
+export function formatBytes(bytes: number): string {
+  if (!Number.isFinite(bytes) || bytes <= 0) {
+    return '0 B';
+  }
+  if (bytes < 1024) {
+    return `${Math.round(bytes)} B`;
+  }
+
+  let value = bytes;
+  let unitIndex = 0;
+  while (value >= 1024 && unitIndex < UNITS.length - 1) {
+    value /= 1024;
+    unitIndex++;
+  }
+
+  if (Number(value.toFixed(1)) >= 1024 && unitIndex < UNITS.length - 1) {
+    value /= 1024;
+    unitIndex++;
+  }
+
+  return `${value.toFixed(1)} ${UNITS[unitIndex]}`;
+}
