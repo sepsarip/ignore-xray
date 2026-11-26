@@ -51,6 +51,7 @@
     }
   },
   "scripts": {
+    "build": "node esbuild.config.mjs",
     "compile": "tsc",
     "typecheck": "tsc --noEmit"
   },
@@ -60,6 +61,7 @@
   "devDependencies": {
     "@types/node": "^20.19.43",
     "@types/vscode": "^1.146.0",
+    "esbuild": "^0.28.2",
     "typescript": "^7.0.2"
   }
 }
